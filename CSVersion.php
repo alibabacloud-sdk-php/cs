@@ -9,9 +9,9 @@ use AlibabaCloud\VersionResolverTrait;
  *
  * @package   AlibabaCloud\CS
  *
- * @method V20151215\CSApiResolver v20151215()
+ * @method static V20151215\CSApiResolver v20151215()
  */
-class CS
+class CSVersion
 {
     use VersionResolverTrait;
 }
