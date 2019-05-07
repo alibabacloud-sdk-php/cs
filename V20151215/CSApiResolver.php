@@ -8,6 +8,9 @@ use AlibabaCloud\Roa;
 /**
  * Resolve Api based on the method name.
  *
+ * @method GetClusterCertInfo getClusterCertInfo(array $options = [])
+ * @method PreCheckForCreateCluster preCheckForCreateCluster(array $options = [])
+ * @method CreateClusterByResourcesGroup createClusterByResourcesGroup(array $options = [])
  * @method ScaleOutCluster scaleOutCluster(array $options = [])
  * @method DescribeKubernetesVersionMetadata describeKubernetesVersionMetadata(array $options = [])
  * @method DeleteClusterTags deleteClusterTags(array $options = [])
@@ -102,6 +105,38 @@ class V20151215Roa extends Roa
 
     /** @var string */
     public $serviceCode = 'cs';
+}
+
+/**
+ * @method string getClusterId()
+ * @method $this withClusterId($value)
+ */
+class GetClusterCertInfo extends V20151215Roa
+{
+    /** @var string */
+    public $pathPattern = '/clusters/[ClusterId]/hosts/certs';
+}
+
+class PreCheckForCreateCluster extends V20151215Roa
+{
+    /** @var string */
+    public $pathPattern = '/api/v1/ess/precheck';
+
+    /** @var string */
+    public $method = 'POST';
+}
+
+/**
+ * @method string getResourceGroupId()
+ * @method $this withResourceGroupId($value)
+ */
+class CreateClusterByResourcesGroup extends V20151215Roa
+{
+    /** @var string */
+    public $pathPattern = '/resource_groups/[ResourceGroupId]/clusters';
+
+    /** @var string */
+    public $method = 'POST';
 }
 
 /**
@@ -1080,6 +1115,7 @@ class DescribeClusterDetail extends V20151215Roa
 
 /**
  * @method string getClusterType()
+ * @method string getDisableParameters()
  * @method string getName()
  */
 class DescribeClusters extends V20151215Roa
@@ -1096,6 +1132,19 @@ class DescribeClusters extends V20151215Roa
     {
         $this->data['ClusterType'] = $value;
         $this->options['query']['clusterType'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function withDisableParameters($value)
+    {
+        $this->data['DisableParameters'] = $value;
+        $this->options['query']['disableParameters'] = $value;
 
         return $this;
     }
